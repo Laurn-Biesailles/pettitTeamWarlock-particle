@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <cmath>
 using namespace std;
 
 // kill function
@@ -124,7 +125,7 @@ class List {
             head = temp;
         }
         size++;
-        return "Node inserted at front";
+        return "Node inserted at front\n";
     }
     string insertAtEnd (double x, double y, double velX, double velY) {
         node *temp = new node(x,y,velX,velY);
@@ -136,13 +137,99 @@ class List {
             tail = temp;
         }
         size++;
-        return "Node inserted at end";
+        return "Node inserted at end\n";
     }
     // deleters
-    string deleteByXY (double x, double y, int choice = 0) {
-        // delete based on position, choice var determines:
+    string deleteByXY (double x, double y, int choice = 0, double error = 0) {
+        // delete based on position
+        // x/y are position of target
+        // choice var determines which part(s) of the target are important
         // 0: x and y must both be true
         // 1: x must be true
         // 2: y must be true
+        // error determines how close the point can be to the target
+        if (choice < 0 || choice > 2) die();
+
+        if (size == 0) return "Nothing deleted\n";
+        else if (size == 1) {
+            if (choice == 0) {
+                if (fabs(x - head->getX()) <= error && fabs(y - head->getY()) <= error) {
+                    node *temp = head;
+                    delete temp;
+                    head = tail = nullptr;
+                    size--;
+                    return "Node deleted\n";
+                }
+            } else if (choice == 1) {
+                if (fabs(x - head->getX()) <= error) {
+                    node *temp = head;
+                    delete temp;
+                    head = tail = nullptr;
+                    size--;
+                    return "Node deleted\n";
+                }
+            } else if (choice == 2) {
+                if (fabs(y - head->getY()) <= error) {
+                    node *temp = head;
+                    delete temp;
+                    head = tail = nullptr;
+                    size--;
+                    return "Node deleted\n";
+                }
+            }
+        } else {
+            for (node *temp = head; temp; temp = temp->getNext()) {
+                if (choice == 0) {
+                    if (fabs(x - head->getX()) <= error && fabs(y - head->getY()) <= error) {
+                        if (temp == head) {
+                            head = temp->getNext();
+                            temp->getNext()->setPrev(nullptr);
+                        } else if (temp == tail) {
+                            tail = temp->getPrev();
+                            temp->getPrev()->setNext(nullptr);
+                        } else {
+                            temp->getPrev()->setNext(temp->getNext());
+                            temp->getNext()->setPrev(temp->getPrev());
+                        }
+                        delete temp;
+                        size--;
+                        return "Node deleted\n";
+                    }
+                } else if (choice == 1) {
+                    if (fabs(x - head->getX()) <= error) {
+                        if (temp == head) {
+                            head = temp->getNext();
+                            temp->getNext()->setPrev(nullptr);
+                        } else if (temp == tail) {
+                            tail = temp->getPrev();
+                            temp->getPrev()->setNext(nullptr);
+                        } else {
+                            temp->getPrev()->setNext(temp->getNext());
+                            temp->getNext()->setPrev(temp->getPrev());
+                        }
+                        delete temp;
+                        size--;
+                        return "Node deleted\n";
+                    }
+                } else if (choice == 2) {
+                    if (fabs(y - head->getY()) <= error) {
+                        if (temp == head) {
+                            head = temp->getNext();
+                            temp->getNext()->setPrev(nullptr);
+                        } else if (temp == tail) {
+                            tail = temp->getPrev();
+                            temp->getPrev()->setNext(nullptr);
+                        } else {
+                            temp->getPrev()->setNext(temp->getNext());
+                            temp->getNext()->setPrev(temp->getPrev());
+                        }
+                        delete temp;
+                        size--;
+                        return "Node deleted\n";
+                    }
+                }
+            }
+        }
+        return "Nothing deleted\n";
     }
 };
