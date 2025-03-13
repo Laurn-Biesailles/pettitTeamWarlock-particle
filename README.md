@@ -18,6 +18,9 @@ Hihi I'm Justus, I think we can make some cool stuff! My idea is essentially a b
 
 Hello, I’m Ella and I’m excited to work on this project and get to know everyone in the group. My initial thought process when this project was introduced was BOOM big explosion and Mario’s fire flower powers, thus I really wanted to work on something pyro-related. I’m new to Github but I’ll definitely get a hang of it and I hope to be helpful to all of you. 
 
+### Daniel Aubuchon
+Hey everyone I'm Daniel. I was thinking about making something interesting but also within a reasonable difficulty seeing as there are three other classes I must attend to, as I'm sure you all do as well. I'm no expert, but I have a background in IT and using Network equipment while in the Army and as a civilian. For my part of the Project I'd like to create a Lava Lamp with orbs slowly bouncing off of the side and small particles raising upward toward the top of the lamp. If I have time I would like to make it possible for my mouse to push the orbs and particles around the lamp. Hopefully we are all able to reach our goals and help eachother make it to the end. Thank you!
+
 ## What the file do
 
 idk maybe once each file is done put a little descriptor here.
