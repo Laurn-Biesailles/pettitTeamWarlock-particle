@@ -11,7 +11,7 @@ class Particle {
 	
 	particleType type;
 
-	Particle (double newPos, double newVel, int newLife, particleType newType) :
+	Particle (double newPos = 0.0, double newVel = 0.0, int newLife = 0, particleType newType = STREAMER) :
 		position(newPos),
 		velocity(newVel), 
 		lifetime(newLife),
