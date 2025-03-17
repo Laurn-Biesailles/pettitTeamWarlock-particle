@@ -6,21 +6,21 @@ class Particle {
 	int lifetime;
 	
 	enum particleType {
-		STREAMER, BALLISTIC, FIREWORK
-	}
+		STREAMER = 's', BALLISTIC = 'b', FIREWORK = 'f'
+	};
 	
 	particleType type;
+
+	public:
 
 	Particle (double newPos = 0.0, double newVel = 0.0, int newLife = 0, particleType newType = STREAMER) :
 		position(newPos),
 		velocity(newVel), 
 		lifetime(newLife),
-		type(newType),
+		type(newType)
 		{
 			if (newLife < 0) lifetime = 0;
 		}
-
-	public:
 
 	double getPos() const { return position; }
 	
