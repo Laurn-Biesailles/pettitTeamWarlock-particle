@@ -2,8 +2,9 @@
 using namespace std;
 
 class Particle {
-	double position, velocity;
+	double x, y, vX, vY;
 	int lifetime;
+	//Color color;
 	
 	enum particleType {
 		STREAMER = 's', BALLISTIC = 'b', FIREWORK = 'f'
@@ -13,29 +14,47 @@ class Particle {
 
 	public:
 
-	Particle (double newPos = 0.0, double newVel = 0.0, int newLife = 0, particleType newType = STREAMER) :
-		position(newPos),
-		velocity(newVel), 
+	Particle (double newX = 0.0,double newY = 0.0, double newVX = 0.0, double newVY = 0.0, int newLife = 0, particleType newType = STREAMER) :
+		x(newX),
+		y(newY),
+		vX(newVX), 
+		vY(newVY),
 		lifetime(newLife),
 		type(newType)
 		{
 			if (newLife < 0) lifetime = 0;
 		}
 
-	double getPos() const { return position; }
+
+	// position
+	double getX() const { return x; }
 	
-	void setPos(double newPos) {
-		position = newPos;
+	void setX(double newX) {
+		x = newX;
+	}
+
+	double getY() const { return y; }
+	
+	void setY(double newY) {
+		x = newY;
 	}
 
 
-	double getVel() const { return velocity; }
-
-	void setVel(double newVel) {
-		velocity = newVel;
-	}
+	// velocity
+	double getVX() const { return vX; }
 	
+	void setVX(double newVX) {
+		vX = newVX;
+	}
 
+	double getVY() const { return vY; }
+	
+	void setVY(double newVY) {
+		vX = newVY;
+	}
+
+
+	// lifetime
 	int getLife() const { return lifetime; }
 
 	void setLife(int newLife) {
@@ -44,6 +63,7 @@ class Particle {
 	}
 
 
+	// particle type
 	particleType getType() const { return type; }
 
 	void setType(particleType newType) {
@@ -51,7 +71,13 @@ class Particle {
 	}
 
 	// TODO: physics method (calculate velocity and direction) and draw method
+	void drawParticle(Particle temp) {
+		return;
+	}
 
+	void moveParticle() {
+		return;	
+	}
 	
 
 
