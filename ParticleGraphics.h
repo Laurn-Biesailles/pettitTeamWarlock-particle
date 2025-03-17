@@ -4,18 +4,32 @@ using namespace std;
 
 class ParticleGraphics {
     private:
-        Color color;
+        uint8_t r, g, b;
 
     public:
-        ParticleGraphics(Color new_color = RED) {
-			color = new_color;
+        ParticleGraphics(uint8_t new_r = 0, uint8_t new_g = 0, uint8_t 0) {
+			r = new_r;
+			g = new_g;
+			b = new_b;
 		}
-        Color get_color() const {
-            return color;
+        uint8_t get_r() const {
+            return r;
         }
-        void set_color(Color new_color) {
-            color = new_color;
+        void set_r(uint8_t new_r) {
+            r = new_r;
         }
+		uint8_t get_g() const {
+			return g;
+		}
+		void set_g(uint8_t new_g) {
+			g = new_g;
+		}
+		uint8_t get_b() const {
+			return b;
+		}
+		void set_b(uint8_t new_b) {
+			b = new_b;
+		}
         void setColor(Color color) { return 0; } // sets color
         void drawPoint(double x, double y) { return 0; } // draws particle point
         void drawRectangle(double x, double y) { return 0;} // draws rectangle
@@ -27,7 +41,7 @@ class ParticleGraphics {
 
 void ParticleGraphics_test() {
 	ParticleGraphics a;
-	if (a.get_color() != RED) {
+	if (get_r() || get_g() || get_b() != 0) {
 		cout << "Color in constructor or get function does not work. Please fix." << endl;
 		exit (1);
 	}
