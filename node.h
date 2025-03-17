@@ -4,11 +4,6 @@
 #include "particle.h"
 using namespace std;
 
-void die (string s = "") {
-	if (s == "") cout << "BAD INPUT" << endl;
-	else cout << s << endl;
-}
-
 class node {
 	// particle variable
 	Particle p;
@@ -35,17 +30,18 @@ class node {
 
 void nodeTest() {
 	// creates new node w/ default values
-	node a;
+	node *a = new node();
 	Particle p;
-	if (a.getPart() != p || a.getNext() != nullptr || a.getPrev() != nullptr) die("Your default constructor or get functions don't work. Please fix");
+	if (a->getPart() != p || a->getNext() != nullptr || a->getPrev() != nullptr) die("Your default constructor or get functions don't work. Please fix");
 	// creates nodes to insert as next and previous
-	node *c = new node;
-	node *d = new node;
+	node *c = new node();
+	node *d = new node();
 	// creates new particle to insert
 	Particle b = (1,2,3,4,5,f);
-	a.setNext(c);
-	a.setPrev(d);
-	if (a.getPart() != b || a.getNext() != c || a.getPrev() != d) die("Your set functions aren't working properly. Please fix");
+	a->setNext(c);
+	a->setPrev(d);
+	if (a->getPart() != b || a->getNext() != c || a->getPrev() != d) die("Your set functions aren't working properly. Please fix");
+	delete (a);
 	delete (c);
 	delete (d);
 }

@@ -17,7 +17,6 @@ class Particle {
 	int lifetime;
 	
 	
-	
 	particleType type;
 
 	public:
@@ -78,6 +77,8 @@ class Particle {
 		type = newType;
 	}
 
+	// boolean operator functions
+
 	// TODO: physics method (calculate velocity and direction) and draw method
 	void drawParticle(Particle temp) {
 		return;
@@ -93,14 +94,25 @@ class Particle {
 
 void particleTests () {
 	Particle a;
+<<<<<<< HEAD
 	if (a.getX() != 0.0 || a.getY() != 0.0 || a.getVX() != 0.0 || a.getVY() != 0.0 || a.getLife() != 0 || a.getType() != particleType::STREAMER) die("Your default constructor or get functions aren't working properly. Please fix");
 	Particle b(1.1,2.2,3.3,4.4,-2,particleType::BALLISTIC);
 	if (b.getX() != 1.1 || b.getY() != 2.2 || b.getVX() != 3.3 || b.getVY() != 4.4 || b.getLife() != 0 || b.getType() != particleType::FIREWORK) die("Your constructor isn't working properly. Please fix");
+=======
+	if (a.getX() != 0.0 || a.getY() != 0.0 || a.getVX() != 0.0 || a.getVY() != 0.0 || a.getLife() != 0 || a.getType() != s) die("Your default constructor or get functions aren't working properly. Please fix");
+	Particle c(1.1,2.2,3.3,4.4,-2,f);
+	if (c.getX() != 1.1 || c.getY() != 2.2 || c.getVX() != 3.3 || c.getVY() != 4.4 || c.getLife() != 0 || c.getType() != f) die("Your constructor isn't working properly. Please fix");
+>>>>>>> 95c0c60ca21ec8155bd53eefab99a1bc7ee29b0d
 	a.setX(2.2);
 	a.setY(2.2);
 	a.setVX(2.2);
 	a.setVY(2.2);
 	a.setLife(5.5);
+<<<<<<< HEAD
 	a.setType(particleType::FIREWORK);
 	if (a.getX() != 2.2 || a.getY() != 2.2 || a.getVX() != 2.2 || a.getVY() != 2.2 || a.getLife() != 5.5 || a.getType() != particleType::BALLISTIC) die("Your set functions aren't working properly. Please fix");
+=======
+	a.setType(b);
+	if (a.getX() != 2.2 || a.getY() != 2.2 || a.getVX() != 2.2 || a.getVY() != 2.2 || a.getLife() != 5.5 || a.getType() != b) die("Your set functions aren't working properly. Please fix");
+>>>>>>> 95c0c60ca21ec8155bd53eefab99a1bc7ee29b0d
 }
