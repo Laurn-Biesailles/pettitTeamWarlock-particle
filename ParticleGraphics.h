@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "/public/colors.h"
 using namespace std;
@@ -30,7 +31,7 @@ class ParticleGraphics {
 		void set_b(uint8_t new_b) {
 			b = new_b;
 		}
-        void setColor(Color color) { return 0; } // sets color
+        void setColor(uint8_t r, uint8_t g, uint8_t b) { return 0; } // sets color
         void drawPoint(double x, double y) { return 0; } // draws particle point
         void drawRectangle(double x, double y) { return 0;} // draws rectangle
         void drawOval(double x, double y) { return 0; } // draws oval
