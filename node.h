@@ -37,12 +37,15 @@ void nodeTest() {
 	// creates new node w/ default values
 	node a;
 	Particle p;
-	if (a.getNext() != nullptr || a.getPrev() != nullptr) die("Your default constructor or get functions don't work. Please fix");
+	if (a.getPart() != p || a.getNext() != nullptr || a.getPrev() != nullptr) die("Your default constructor or get functions don't work. Please fix");
+	// creates nodes to insert as next and previous
 	node *c = new node;
 	node *d = new node;
+	// creates new particle to insert
+	Particle b = (1,2,3,f);
 	a.setNext(c);
 	a.setPrev(d);
-	if (a.getNext() != c || a.getPrev() != d) die("Your set functions aren't working properly. Please fix");
+	if (a.getPart() != b || a.getNext() != c || a.getPrev() != d) die("Your set functions aren't working properly. Please fix");
 	delete (c);
 	delete (d);
 }
