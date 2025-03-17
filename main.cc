@@ -11,6 +11,8 @@ int main () {
     nodeTest();
     cout << "All tests passed." << endl;
     cout << "Checking particle system class" << endl;
+	partSysTest();
     cout << "Checking particle graphics class" << endl;
 	ParticleGraphics_test();
+	
 }
