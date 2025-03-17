@@ -5,10 +5,10 @@
 using namespace std;
 
 // kill function
-void die(string s = "") {
+/*void die(string s = "") {
     if (s == "") cout << "BAD INPUT" << endl;
     else cout << s << endl;
-}
+}*/
 
 // Linked List node class
 class node {

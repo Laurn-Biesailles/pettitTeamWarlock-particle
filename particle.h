@@ -1,22 +1,25 @@
+#pragma once
 #include <iostream>
 #include "/public/colors.h"
-//using namespace std;
+#include <string>
 
-void die (string s = "") {
-	if (s == "") cout << "BAD INPUT" << endl;
-	else cout << s << endl;
-}
+//using namespace std;
 
 
 enum class particleType {
 	STREAMER = 's', BALLISTIC = 'b', FIREWORK = 'f'
 };
 
+void die (string s = "") {
+	if (s == "") {cout << "BAD INPUT" << endl;}
+	else {cout << s << endl;}
+}
 
 class Particle {
 	double x, y, vX, vY;
 	int lifetime;
-	
+
+	// colors
 	
 	particleType type;
 
@@ -33,6 +36,7 @@ class Particle {
 			if (newLife < 0) lifetime = 0;
 		}
 
+	// copy constructor
 	Particle (Particle& temp) : 
 		x(temp.getX()),
 		y(temp.getY()),
@@ -90,14 +94,17 @@ class Particle {
 	// boolean operator functions
 
 	// TODO: physics method (calculate velocity and direction) and draw method
-	void drawParticle(Particle temp) {
+	void physics() {
 		return;
 	}
 
-	void moveParticle() {
+	/*
+	void draw() {
 		return;	
 	}
-	
+	*/
+
+	bool operator!=(const Particle& temp) const;
 
 
 };
