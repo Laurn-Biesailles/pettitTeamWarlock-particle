@@ -1,13 +1,18 @@
 #include <iostream>
 using namespace std;
 
+void die (string s = "") {
+	if (s == "") cout << "BAD INPUT" << endl;
+	else cout << s << endl;
+}
+
 class Particle {
 	double x, y, vX, vY;
 	int lifetime;
 	//Color color;
 	
 	enum particleType {
-		STREAMER = 's', BALLISTIC = 'b', FIREWORK = 'f'
+		STREAMER = 0, BALLISTIC = 1, FIREWORK = 2
 	};
 	
 	particleType type;
@@ -82,3 +87,17 @@ class Particle {
 
 
 };
+
+void particleTests () {
+	Particle a;
+	if (a.getX() != 0.0 || a.getY() != 0.0 || a.getVX() != 0.0 || a.getVY() != 0.0 || a.getLife() != 0 || a.getType() != 0) die("Your default constructor or get functions aren't working properly. Please fix");
+	Particle b(1.1,2.2,3.3,4.4,-2,1);
+	if (b.getX() != 1.1 || b.getY() != 2.2 || b.getVX() != 3.3 || b.getVY() != 4.4 || b.getLife() != 0 || b.getType() != 2) die("Your constructor isn't working properly. Please fix");
+	a.setX(2.2);
+	a.setY(2.2);
+	a.setVX(2.2);
+	a.setVY(2.2);
+	a.setLife(5.5);
+	a.setType(2);
+	if (a.getX() != 2.2 || a.getY() != 2.2 || a.getVX() != 2.2 || a.getVY() != 2.2 || a.getLife() != 5.5 || a.getType() != 1) die("Your set functions aren't working properly. Please fix");
+}

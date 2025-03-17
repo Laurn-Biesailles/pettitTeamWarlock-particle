@@ -42,7 +42,7 @@ void nodeTest() {
 	node *c = new node;
 	node *d = new node;
 	// creates new particle to insert
-	Particle b = (1,2,3,f);
+	Particle b = (1,2,3,4,5,f);
 	a.setNext(c);
 	a.setPrev(d);
 	if (a.getPart() != b || a.getNext() != c || a.getPrev() != d) die("Your set functions aren't working properly. Please fix");
