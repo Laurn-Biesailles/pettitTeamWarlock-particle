@@ -10,9 +10,9 @@ enum class particleType {
 	STREAMER = 's', BALLISTIC = 'b', FIREWORK = 'f'
 };
 
-void die (string s = "") {
-	if (s == "") {cout << "BAD INPUT" << endl;}
-	else {cout << s << endl;}
+void die (std::string s = "") {
+	if (s == "") {std::cout << "BAD INPUT" << std::endl;}
+	else {std::cout << s << std::endl;}
 }
 
 class Particle {
