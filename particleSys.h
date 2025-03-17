@@ -23,11 +23,15 @@ class particleSystem{
 
 
 	void partSysTest(){
+		ParticleSystem ps;
+		int size = ps.numParticles();
+		if(size != 0){
+			cout << "Incorrectly created particle system" << endl;
+		}
 		particle a;
-		add_particle(Particle particle);
-		int size = 0;
-		size = numParticles();
-		if(size > 0){
+		ps.add_particle(a);
+		size = ps.numParticles();
+		if(size !> 0){
 			cout << "Did not add particle" << endl;
 		}
 		else{
