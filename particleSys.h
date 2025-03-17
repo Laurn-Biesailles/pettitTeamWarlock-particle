@@ -8,7 +8,7 @@ class particleSystem{
 	auto colm = 360;
 	List particles;	
 	public:
-	void add_particle(Particle  particle){
+	void add_particle(Particle particle){
 		particles.push_back(particle);
 	}
 	int numParticles(){
@@ -21,6 +21,19 @@ class particleSystem{
 		return;
 	}
 
+
+	void partSysTest(){
+		particle a;
+		add_particle(Particle particle);
+		int size = 0;
+		size = numParticles();
+		if(size > 0){
+			cout << "Did not add particle" << endl;
+		}
+		else{
+			cout << "Added Particle" << endl;
+		}
+	}
 	
 
 };
