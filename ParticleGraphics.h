@@ -43,8 +43,8 @@ class ParticleGraphics {
         void drawPoint(int x, int y) {
 			resetcolor();
 			setbgcolor(r,g,b);
-			int row = x;
-			int col = y;
+			int row = y;
+			int col = x;
 			cout << " ";
 			cout.flush();
 			resetcolor();
