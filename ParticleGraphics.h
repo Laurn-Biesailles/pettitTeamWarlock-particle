@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "particle.h"
 #include "/public/colors.h"
 using namespace std;
 
@@ -8,10 +9,11 @@ class ParticleGraphics {
         uint8_t r, g, b;
 
     public:
-        ParticleGraphics(uint8_t new_r = 0, uint8_t new_g = 0, uint8_t 0) {
+        ParticleGraphics(uint8_t new_r = 0, uint8_t new_g = 0, uint8_t new_b = 0) {
 			r = new_r;
 			g = new_g;
 			b = new_b;
+
 		}
         uint8_t get_r() const {
             return r;
@@ -31,12 +33,26 @@ class ParticleGraphics {
 		void set_b(uint8_t new_b) {
 			b = new_b;
 		}
-        void setColor(uint8_t r, uint8_t g, uint8_t b) { return 0; } // sets color
-        void drawPoint(double x, double y) { return 0; } // draws particle point
-        void drawRectangle(double x, double y) { return 0;} // draws rectangle
-        void drawOval(double x, double y) { return 0; } // draws oval
-        void drawPolygon(double x, double y) { return 0; } // draws polygon
-        void drawLine(double x, double y) { return 0; } // draws line
+        void setColor(uint8_t new_r, uint8_t new_g, uint8_t new_b) {
+			r = new_r;
+			g = new_g;
+			b = new_b;
+		} // sets color
+
+        void drawPoint(int x, int y) {
+			resetcolor();
+			setbgcolor(r,g,b);
+			int row = x;
+			int col = y;
+			cout << " ";
+			cout.flush();
+			resetcolor();
+		} // draws particle point
+
+        void drawRectangle(double x, double y) { return;} // draws rectangle
+        void drawOval(double x, double y) { return; } // draws oval
+        void drawPolygon(double x, double y) { return; } // draws polygon
+        void drawLine(double x, double y) { return; } // draws line
 
 };
 
