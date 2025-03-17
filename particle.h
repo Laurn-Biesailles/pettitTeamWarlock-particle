@@ -1,5 +1,6 @@
 #include <iostream>
-using namespace std;
+#include "/public/colors.h"
+//using namespace std;
 
 void die (string s = "") {
 	if (s == "") cout << "BAD INPUT" << endl;
@@ -31,6 +32,15 @@ class Particle {
 		{
 			if (newLife < 0) lifetime = 0;
 		}
+
+	Particle (Particle& temp) : 
+		x(temp.getX()),
+		y(temp.getY()),
+		vX(temp.getVX()),
+		vY(temp.getVY()),
+		lifetime(temp.getLife()),
+		type(temp.getType()) {}
+
 
 
 	// position
