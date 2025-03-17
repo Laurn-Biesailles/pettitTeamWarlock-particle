@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
-#include "ll.h"
-#include "particle.h"
+#include "node.h"
 #include "ParticleGraphics.h"
+
+
 class particleSystem{
 	auto row = 480;
 	auto colm = 360;

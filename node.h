@@ -13,7 +13,7 @@ class node {
 	public:
 	// constructor
 	node (Particle newP, node *newNext = nullptr, node *newPrev = nullptr) {
-		p = newP;
+		p(newP);
 		next = newNext;
 		prev = newPrev;
 	}
@@ -30,14 +30,14 @@ class node {
 
 void nodeTest() {
 	// creates new node w/ default values
-	node *a = new node();
 	Particle p;
+	node *a = new node(p,nullptr,nullptr);
 	if (a->getPart() != p || a->getNext() != nullptr || a->getPrev() != nullptr) die("Your default constructor or get functions don't work. Please fix");
 	// creates nodes to insert as next and previous
-	node *c = new node();
-	node *d = new node();
+	node *c = new node(p,nullptr,nullptr);
+	node *d = new node(p,nullptr,nullptr);
 	// creates new particle to insert
-	Particle b = (1,2,3,4,5,f);
+	Particle b = (1,2,3,4,5,particleType::FIREWORK);
 	a->setNext(c);
 	a->setPrev(d);
 	if (a->getPart() != b || a->getNext() != c || a->getPrev() != d) die("Your set functions aren't working properly. Please fix");
