@@ -38,9 +38,11 @@ void nodeTest() {
 	node a;
 	Particle p;
 	if (a.getNext() != nullptr || a.getPrev() != nullptr) die("Your default constructor or get functions don't work. Please fix");
-	node *c;
-	node *d;
+	node *c = new node;
+	node *d = new node;
 	a.setNext(c);
 	a.setPrev(d);
 	if (a.getNext() != c || a.getPrev() != d) die("Your set functions aren't working properly. Please fix");
+	delete (c);
+	delete (d);
 }

@@ -9,6 +9,7 @@ int main () {
     cout << "Checking particle class" << endl;
     cout << "Checking linked list node class" << endl;
     nodeTest();
+    cout << "All tests passed." << endl;
     cout << "Checking particle system class" << endl;
     cout << "Checking particle graphics class" << endl;
 }
