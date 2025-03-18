@@ -6,8 +6,8 @@
 
 
 class particleSystem{
-	auto row = 480;
-	auto colm = 360;
+	int row = 480;
+	int colm = 360;
 	node *head = nullptr;
 	node *tail = nullptr;
 	int size = 0;
@@ -43,7 +43,7 @@ class particleSystem{
 	void moveParticles(){
 		node *temp = head;
          while(temp){
-			temp.getPart().physics();
+			temp->getPart().physics();
             temp = temp->getNext();
          }
 
@@ -51,7 +51,7 @@ class particleSystem{
 	void drawParticles(ParticleGraphics g){
 		 node *temp = head;
          while(temp){
-			g.drawPoint(temp.getPart().getX(),temp.getPart().getY());
+			g.drawPoint(temp->getPart().getX(),temp->getPart().getY());
             temp = temp->getNext();
          }
 
@@ -64,7 +64,7 @@ class particleSystem{
 
 
     void partSysTest(){
-        ParticleSystem ps;
+        particleSystem ps;
         int size = ps.numParticles();
         if(size != 0){
             cout << "Incorrectly created particle system" << endl;
@@ -72,7 +72,7 @@ class particleSystem{
         Particle a;
         ps.add_particle(a);
         size = ps.numParticles();
-        if(size !> 0){
+        if(size <= 0){
             cout << "Did not add particle" << endl;
         }
         else{
