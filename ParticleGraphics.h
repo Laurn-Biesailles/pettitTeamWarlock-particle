@@ -62,7 +62,7 @@ class ParticleGraphics {
 				}
 			}
 			cout.flush();
-			reesetcolor();
+			resetcolor();
 		} // draws rectangle
 
         void drawOval(int min_x, int max_x, int min_y, int max_y) { 
