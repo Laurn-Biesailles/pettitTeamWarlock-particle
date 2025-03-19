@@ -37,7 +37,7 @@ class Particle {
 		}
 
 	// copy constructor
-	Particle (Particle& temp) : 
+	Particle (const Particle &temp) : 
 		x(temp.getX()),
 		y(temp.getY()),
 		vX(temp.getVX()),
@@ -121,4 +121,5 @@ void particleTests () {
 	a.setLife(5.5);
 	a.setType(particleType::FIREWORK);
 	if (a.getX() != 2.2 || a.getY() != 2.2 || a.getVX() != 2.2 || a.getVY() != 2.2 || a.getLife() != 5.5 || a.getType() != particleType::BALLISTIC) die("Your set functions aren't working properly. Please fix");
+	std::cout << "All Tests Passed" << std::endl;
 }

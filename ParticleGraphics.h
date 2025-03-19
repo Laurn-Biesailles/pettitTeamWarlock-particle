@@ -54,14 +54,13 @@ class ParticleGraphics {
         void drawOval(double x, double y) { return; } // draws oval
         void drawPolygon(double x, double y) { return; } // draws polygon
         void drawLine(double x, double y) { return; } // draws line
+};
 
 
 void ParticleGraphics_test() {
 	ParticleGraphics a;
-	if (get_r() || get_g() || get_b() != 0) {
+	if (a.get_r() != 0 || a.get_g() != 0 || a.get_b() != 0) {
 		cout << "Color in constructor or get function does not work. Please fix." << endl;
 		exit (1);
 	}
 }
-
-};
