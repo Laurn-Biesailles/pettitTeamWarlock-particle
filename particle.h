@@ -1,14 +1,14 @@
 #pragma once
 #include <iostream>
 #include "/public/colors.h"
+#include <cstdlib>
+#include <ctime>
 #include <string>
 
 //using namespace std;
 
 
-enum class particleType {
-	STREAMER = 's', BALLISTIC = 'b', FIREWORK = 'f'
-};
+enum class particleType { STREAMER, BALLISTIC, FIREWORK };
 
 void die (std::string s = "") {
 	if (s == "") {std::cout << "BAD INPUT" << std::endl;}
@@ -25,15 +25,15 @@ class Particle {
 
 	public:
 
-	Particle (double newX = 0.0,double newY = 0.0, double newVX = 0.0, double newVY = 0.0, int newLife = 0, particleType newType = particleType::STREAMER) :
+	Particle (double newX = 0.0, double newY = 0.0, double newVX = 0.0, double newVY = 0.0, int newLife = 0, particleType newType = particleType::STREAMER) :
 		x(newX),
 		y(newY),
 		vX(newVX), 
 		vY(newVY),
-		lifetime(newLife),
+		lifetime(std::max(0, newLife)),
 		type(newType)
 		{
-			if (newLife < 0) lifetime = 0;
+			//if (newLife < 0) lifetime = 0;
 		}
 
 	// copy constructor
@@ -57,7 +57,7 @@ class Particle {
 	double getY() const { return y; }
 	
 	void setY(double newY) {
-		x = newY;
+		y = newY;
 	}
 
 
@@ -71,7 +71,7 @@ class Particle {
 	double getVY() const { return vY; }
 	
 	void setVY(double newVY) {
-		vX = newVY;
+		vY = newVY;
 	}
 
 
@@ -94,8 +94,46 @@ class Particle {
 	// boolean operator functions
 
 	// TODO: physics method (calculate velocity and direction) and draw method
-	void physics() {
-		return;
+	void physics(Particle& temp) {
+		srand(time(0));
+		auto [rows, cols] = get_terminal_size();
+		rows--;
+		cols--;
+
+		temp.setX(rand() % cols);
+		temp.setY(rand() % rows);
+		temp.setVX(1.0);
+		temp.setVY(1.0);
+		temp.setLife(1440);
+		for (int i = 0; i < temp.getLife(); i++) {
+			// update the position
+			temp.setX(temp.getX() + temp.getVX());
+			temp.setY(temp.getY() + temp.getVY());
+
+			if (temp.getX() < 0) {
+				// bounce off edge
+				temp.setX(temp.getX() * -1.0);
+				temp.setVX(temp.getVY() * -1.0);
+			}
+			if (temp.getY() < 0) {
+				// bounce off edge
+				temp.setY(temp.getY() * -1.0);
+				temp.setVY(temp.getVY() * -1.0);
+			}
+			if (temp.getX() >= cols) {
+				temp.setX(cols - (temp.getX() - cols));
+				temp.setVX(temp.getVX() * -1.0);
+			}
+			if (temp.getY() >= rows) {
+				temp.setY(rows - (temp.getY() - rows));
+				temp.setVY(temp.getVY() * -1.0);
+			}
+
+			temp.setVX(temp.getVX() + 0);
+			temp.setVY(temp.getVY() + 1);
+
+		}
+		//return;
 	}
 
 	/*
@@ -112,14 +150,18 @@ class Particle {
 void particleTests () {
 	Particle a;
 	if (a.getX() != 0.0 || a.getY() != 0.0 || a.getVX() != 0.0 || a.getVY() != 0.0 || a.getLife() != 0 || a.getType() != particleType::STREAMER) die("Your default constructor or get functions aren't working properly. Please fix");
+	
 	Particle b(1.1,2.2,3.3,4.4,-2,particleType::BALLISTIC);
-	if (b.getX() != 1.1 || b.getY() != 2.2 || b.getVX() != 3.3 || b.getVY() != 4.4 || b.getLife() != 0 || b.getType() != particleType::FIREWORK) die("Your constructor isn't working properly. Please fix");
-	a.setX(2.2);
-	a.setY(2.2);
-	a.setVX(2.2);
-	a.setVY(2.2);
-	a.setLife(5.5);
-	a.setType(particleType::FIREWORK);
-	if (a.getX() != 2.2 || a.getY() != 2.2 || a.getVX() != 2.2 || a.getVY() != 2.2 || a.getLife() != 5.5 || a.getType() != particleType::BALLISTIC) die("Your set functions aren't working properly. Please fix");
-	std::cout << "All Tests Passed" << std::endl;
+	if (b.getX() != 1.1 || b.getY() != 2.2 || b.getVX() != 3.3 || b.getVY() != 4.4 || b.getLife() != 0 || b.getType() != particleType::BALLISTIC) die("Your constructor isn't working properly. Please fix");
+	
+	Particle c;
+	c.setX(1.5);
+	c.setY(2.0);
+	c.setVX(2.5);
+	c.setVY(3.0);
+	c.setLife(3);
+	c.setType(particleType::FIREWORK);
+	if (c.getX() != 1.5 || c.getY() != 2.0 || c.getVX() != 2.5 || c.getVY() != 3.0 || c.getLife() != 3 || c.getType() != particleType::FIREWORK) die("Your set functions aren't working properly. Please fix");
+	
+	else { std::cout << "All Tests Passed" << std::endl; }
 }

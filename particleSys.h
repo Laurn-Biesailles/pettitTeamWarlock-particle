@@ -43,8 +43,8 @@ class particleSystem{
 	void moveParticles(){
 		node *temp = head;
          while(temp){
-			temp->getPart().physics();
-            temp = temp->getNext();
+			//temp->getPart().physics();
+            //temp = temp->getNext();
          }
 
 	}
