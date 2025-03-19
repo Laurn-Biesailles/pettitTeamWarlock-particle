@@ -3,21 +3,37 @@
 #include "ParticleGraphics.h"
 #include "particleSys.h"
 #include <iostream>
+#include "/public/read.h"
 using namespace std;
 
-int main() {
-	cout << "Particle System Testing Phase" << endl;
+void runTests();
 
-	cout << "Checking particle class" << endl;
+int main() {
+	cout.flush();
+	int runType = read("Choose which program to run:\n0- Tests\n1- First program\n");
+	if (runType == 0) {
+		runTests();
+	} else if (runType == 1) {
+		cout << "Working on it :3" << endl;
+	} else if (runType == 2) {
+		cout << "Working on it :3" << endl;
+	} else if (runType == 3) {
+		cout << "Working on it :3" << endl;
+	} else {
+		cout << "BAD INPUT" << endl;
+	}
+}
+
+void runTests () {
+	cout << "Testing Particle Class:" << endl;
 	particleTests();
 
-	cout << "Checking node class" << endl;
+	cout << "Testing Node Class:" << endl;
 	nodeTest();
 
-	cout << "Checking particle system class" << endl;
+	cout << "Testing Particle System Class:" << endl;
 	partSysTest();
 
-	cout << "Checking particle graphics class" << endl;
+	cout << "Checking Particle Graphics Class:" << endl;
 	ParticleGraphics_test();
-
 }
