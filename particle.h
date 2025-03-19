@@ -114,26 +114,29 @@ class Particle {
 				// bounce off edge
 				temp.setX(temp.getX() * -1.0);
 				temp.setVX(temp.getVY() * -1.0);
+				std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
 			}
 			if (temp.getY() < 0) {
 				// bounce off edge
 				temp.setY(temp.getY() * -1.0);
 				temp.setVY(temp.getVY() * -1.0);
+				std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
 			}
 			if (temp.getX() >= cols) {
 				temp.setX(cols - (temp.getX() - cols));
 				temp.setVX(temp.getVX() * -1.0);
+				std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
 			}
 			if (temp.getY() >= rows) {
 				temp.setY(rows - (temp.getY() - rows));
 				temp.setVY(temp.getVY() * -1.0);
+				std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
 			}
 
 			temp.setVX(temp.getVX() + 0);
 			temp.setVY(temp.getVY() + 1);
 
 		}
-		//return;
 	}
 
 	/*
@@ -163,5 +166,10 @@ void particleTests () {
 	c.setType(particleType::FIREWORK);
 	if (c.getX() != 1.5 || c.getY() != 2.0 || c.getVX() != 2.5 || c.getVY() != 3.0 || c.getLife() != 3 || c.getType() != particleType::FIREWORK) die("Your set functions aren't working properly. Please fix");
 	
+	
 	else { std::cout << "All Tests Passed" << std::endl; }
+	
+	Particle d(1.0, 1.0, 1.0, 1.0, -1, particleType::STREAMER);
+	d.physics(d);
+	
 }
