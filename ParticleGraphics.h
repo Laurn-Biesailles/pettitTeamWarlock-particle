@@ -138,6 +138,7 @@ void ParticleGraphics_test() {
 	b.drawPoint(1,1);
 	c.drawPoint(1,1);
 	cout << "\n";
+	//cout << "Checking draw functions" << endl;
 	//c.drawRectangle(0,10,0,10);
 	//c.drawCircle(0,0,10);
 }
