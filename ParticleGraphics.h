@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <cstdlib>
+#include <cassert>
+#include <cmath>
 #include "particle.h"
 #include "/public/colors.h"
 using namespace std;
@@ -57,7 +59,7 @@ class ParticleGraphics {
 			setbgcolor(r,g,b);
 			for (int col = min_x; col <= max_x; col++) {
 				for (int row = min_y; row <= max_y; row++) {
-					movecursor(row,col);
+					movecursor(col,row);
 					cout << " ";
 				}
 			}
@@ -65,15 +67,17 @@ class ParticleGraphics {
 			resetcolor();
 		} // draws rectangle
 
-        void drawOval(int min_x, int max_x, int min_y, int max_y) { 
-			assert(min_x < max_x);
-			assert(min_y < max_y);
+        void drawCircle(int x, int y, int radius) { 
 			resetcolor();
 			setbgcolor(r,g,b);
-			for (int col = min_x; col <= max_x; col++) {
-				for (int row = min_y; row <= max_y; row++) {
-					movecursor(row,col);
-					cout << " ";
+			for (int col = x; col <= (2*radius); ++col) {
+				for (int row = y; row <= (2*radius); ++row) {
+					int distance = sqrt(pow((col-radius),2) + pow((row-radius),2));
+					if (distance <= radius) {
+						movecursor(col,row);
+						cout << " ";
+					}
+					//else { movecursor(col,row); }
 				}
 			}
 			cout.flush();
@@ -87,7 +91,7 @@ class ParticleGraphics {
 			setbgcolor(r,g,b);
 			for (int col = min_x; col <= max_x; col++) {
 				for (int row = min_y; row <= max_y; row++) {
-					movecursor(row,col);
+					movecursor(col,row);
 					cout << " ";
 				}
 			}
@@ -114,11 +118,25 @@ class ParticleGraphics {
 
 void ParticleGraphics_test() {
 	ParticleGraphics a;
+	ParticleGraphics b(80,40,20);
+	ParticleGraphics c;
+	c.setColor(102,255,255);
 	if (a.get_r() != 0 || a.get_g() != 0 || a.get_b() != 0) {
 		cout << "Color in constructor or get function does not work. Please fix." << endl;
 		exit (1);
 	}
-	else {
-		cout << "All Tests Passed" << endl;
+	else if (b.get_r() != 80 || b.get_g() != 40 || b.get_b() != 20) {
+		cout << "Color in constructor or get function does not work. Please fix." << endl;
+		exit (1);
 	}
+	else if (c.get_r() != 102 || c.get_g() != 255 || c.get_b() != 255) {
+		cout << "Color in setColor does not work. Please fix." << endl;
+	}
+	else {
+		cout << "Color works" << endl;
+	}
+	b.drawPoint(1,1);
+	c.drawPoint(1,1);
+	cout << "\n";
+	c.drawCircle(0,0,10);
 }
