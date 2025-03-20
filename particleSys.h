@@ -43,11 +43,56 @@ class particleSystem{
 	void moveParticles(){
 		node *temp = head;
          while(temp){
-			//temp->getPart().physics();
-            //temp = temp->getNext();
+		Particle temp2 = temp->getPart();
+		temp2.physics(temp2);
+		temp->setPart(temp2);
+            temp = temp->getNext();
          }
 
 	}
+	void cull(){
+		node *temp = head;
+		while(temp){
+			if(temp->getPart().getX() > row || temp->getPart().getY() > colm ||
+			   temp->getPart().getX() < 0 || temp->getPart().getY() < 0 ||
+			   temp->getPart().getLife() <= 0 ){
+				if(size == 1){
+					head = tail = nullptr;
+					delete temp;
+					temp = nullptr;
+					size--;
+				}
+				else if(temp == head){
+				head = temp->getNext();
+				head->setPrev(nullptr);
+				delete temp;
+				temp = head;
+				size--;
+				}
+				else if(temp == tail){
+					tail = temp->getPrev();
+					tail->setNext(nullptr);
+					delete temp;
+					temp = tail;
+					size--;
+				}
+				else{
+					 node *temp2 = temp->getPrev();
+                     node *temp3 = temp->getNext();
+                     temp2->setNext(temp3);
+                     temp3->setPrev(temp2);
+					 delete temp;
+					 temp = temp3;
+				}
+
+				 
+			}
+			else{
+				temp = temp->getNext();
+			}
+		}
+	}
+
 	void drawParticles(ParticleGraphics g){
 		 node *temp = head;
          while(temp){
