@@ -105,33 +105,41 @@ class Particle {
 		temp.setVX(1.0);
 		temp.setVY(1.0);
 		temp.setLife(1440);
+		
 		for (int i = 0; i < temp.getLife(); i++) {
 			// update the position
 			temp.setX(temp.getX() + temp.getVX());
 			temp.setY(temp.getY() + temp.getVY());
+			temp.setLife(temp.getLife() - 45);
 
+			std::cout << temp.getLife() << std::endl;
+
+			// if we want it to bounce uncomment this stuff
+
+			
 			if (temp.getX() < 0) {
 				// bounce off edge
 				temp.setX(temp.getX() * -1.0);
 				temp.setVX(temp.getVY() * -1.0);
-				std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
+				//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
 			}
 			if (temp.getY() < 0) {
 				// bounce off edge
 				temp.setY(temp.getY() * -1.0);
 				temp.setVY(temp.getVY() * -1.0);
-				std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
+				//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
 			}
 			if (temp.getX() >= cols) {
 				temp.setX(cols - (temp.getX() - cols));
 				temp.setVX(temp.getVX() * -1.0);
-				std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
+				//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
 			}
 			if (temp.getY() >= rows) {
 				temp.setY(rows - (temp.getY() - rows));
 				temp.setVY(temp.getVY() * -1.0);
-				std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
+				//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
 			}
+			
 
 			temp.setVX(temp.getVX() + 0);
 			temp.setVY(temp.getVY() + 1);
