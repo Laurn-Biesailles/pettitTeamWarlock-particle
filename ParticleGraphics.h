@@ -82,7 +82,7 @@ class ParticleGraphics {
 			}
 			cout.flush();
 			resetcolor();
-		} // draws oval - not done!
+		} // draws oval - good enough?
 
         void drawPolygon(int min_x, int max_x, int min_y, int max_y) { 
 			assert(min_x < max_x);
@@ -138,5 +138,6 @@ void ParticleGraphics_test() {
 	b.drawPoint(1,1);
 	c.drawPoint(1,1);
 	cout << "\n";
-	c.drawCircle(0,0,10);
+	//c.drawRectangle(0,10,0,10);
+	//c.drawCircle(0,0,10);
 }
