@@ -18,23 +18,17 @@ void die (std::string s = "") {
 class Particle {
 	double x, y, vX, vY;
 	int lifetime;
-
-	// colors
-	
-	particleType type;
+	char type;
 
 	public:
 
-	Particle (double newX = 0.0, double newY = 0.0, double newVX = 0.0, double newVY = 0.0, int newLife = 0, particleType newType = particleType::STREAMER) :
+	Particle (double newX = 0.0, double newY = 0.0, double newVX = 0.0, double newVY = 0.0, int newLife = 0, char newType = 's') :
 		x(newX),
 		y(newY),
 		vX(newVX), 
 		vY(newVY),
 		lifetime(std::max(0, newLife)),
-		type(newType)
-		{
-			//if (newLife < 0) lifetime = 0;
-		}
+		type(newType) {}
 
 	// copy constructor
 	Particle (const Particle &temp) : 
@@ -85,10 +79,11 @@ class Particle {
 
 
 	// particle type
-	particleType getType() const { return type; }
+	char getType() const { return type; }
 
-	void setType(particleType newType) {
-		type = newType;
+	void setType(char newType) {
+		if (newType == 's' || newType == 'b' || newType == 'f') type = newType;
+		else newType = 's';
 	}
 
 	// boolean operator functions
@@ -160,10 +155,10 @@ class Particle {
 
 void particleTests () {
 	Particle a;
-	if (a.getX() != 0.0 || a.getY() != 0.0 || a.getVX() != 0.0 || a.getVY() != 0.0 || a.getLife() != 0 || a.getType() != particleType::STREAMER) die("Your default constructor or get functions aren't working properly. Please fix");
+	if (a.getX() != 0.0 || a.getY() != 0.0 || a.getVX() != 0.0 || a.getVY() != 0.0 || a.getLife() != 0 || a.getType() != 's') die("Your default constructor or get functions aren't working properly. Please fix");
 	
-	Particle b(1.1,2.2,3.3,4.4,-2,particleType::BALLISTIC);
-	if (b.getX() != 1.1 || b.getY() != 2.2 || b.getVX() != 3.3 || b.getVY() != 4.4 || b.getLife() != 0 || b.getType() != particleType::BALLISTIC) die("Your constructor isn't working properly. Please fix");
+	Particle b(1.1,2.2,3.3,4.4,-2,'b');
+	if (b.getX() != 1.1 || b.getY() != 2.2 || b.getVX() != 3.3 || b.getVY() != 4.4 || b.getLife() != 0 || b.getType() != 'b') die("Your constructor isn't working properly. Please fix");
 	
 	Particle c;
 	c.setX(1.5);
@@ -171,13 +166,13 @@ void particleTests () {
 	c.setVX(2.5);
 	c.setVY(3.0);
 	c.setLife(3);
-	c.setType(particleType::FIREWORK);
-	if (c.getX() != 1.5 || c.getY() != 2.0 || c.getVX() != 2.5 || c.getVY() != 3.0 || c.getLife() != 3 || c.getType() != particleType::FIREWORK) die("Your set functions aren't working properly. Please fix");
+	c.setType('f');
+	if (c.getX() != 1.5 || c.getY() != 2.0 || c.getVX() != 2.5 || c.getVY() != 3.0 || c.getLife() != 3 || c.getType() != 'f') die("Your set functions aren't working properly. Please fix");
 	
 	
 	else { std::cout << "All Tests Passed" << std::endl; }
 	
-	Particle d(1.0, 1.0, 1.0, 1.0, -1, particleType::STREAMER);
+	Particle d(1.0, 1.0, 1.0, 1.0, -1, 's');
 	d.physics(d);
 	
 }

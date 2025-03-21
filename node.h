@@ -38,7 +38,7 @@ void nodeTest() {
 	node *c = new node(p,nullptr,a);
 	node *d = new node(p,a,nullptr);
 	// creates new particle to insert
-	Particle b(1.0,2.0,3.0,4.0,5,particleType::FIREWORK);
+	Particle b(1.0,2.0,3.0,4.0,5,'f');
 	a->setNext(c);
 	a->setPrev(d);
 	a->setPart(b);
