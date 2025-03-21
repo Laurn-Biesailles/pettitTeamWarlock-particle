@@ -8,8 +8,8 @@
 class particleSystem{
 	int row = 480;
 	int colm = 360;
-	node *head = nullptr;
-	node *tail = nullptr;
+	node *head;
+	node *tail;
 	int size = 0;
 	public:
 	
