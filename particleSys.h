@@ -13,7 +13,11 @@ class particleSystem{
 	int size = 0;
 	public:
 	
-	particleSystem(){}
+	particleSystem(){
+		const auto [rows,col] = get_terminal_size();
+		row = rows;
+		colm = col;
+	}
 
 	~particleSystem(){
 		 node *temp = head;
@@ -44,7 +48,7 @@ class particleSystem{
 		node *temp = head;
          while(temp){
 		Particle temp2 = temp->getPart();
-		temp2.physics(temp2);
+		temp2.physics();
 		temp->setPart(temp2);
             temp = temp->getNext();
          }
@@ -94,12 +98,20 @@ class particleSystem{
 	}
 
 	void drawParticles(ParticleGraphics g){
-		 node *temp = head;
-         while(temp){
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < colm; i++) {
+				movecursor(i,j);
+				cout << "";
+			}
+		}
+		cout.flush();
+		resetcolor();
+
+		node *temp = head;
+        while(temp){
 			g.drawPoint(temp->getPart().getX(),temp->getPart().getY());
             temp = temp->getNext();
-         }
-
+        }
 	}
 };
 

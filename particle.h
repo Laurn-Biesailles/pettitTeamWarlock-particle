@@ -89,8 +89,13 @@ class Particle {
 	// boolean operator functions
 
 	// TODO: physics method (calculate velocity and direction) and draw method
-	void physics(Particle& temp) {
-		srand(time(0));
+	void physics() {
+		x += vX;
+		y += vY;
+
+		if (type == 'b') vY++;
+		
+		/*srand(time(0));
 		auto [rows, cols] = get_terminal_size();
 		rows--;
 		cols--;
@@ -139,7 +144,7 @@ class Particle {
 			temp.setVX(temp.getVX() + 0);
 			temp.setVY(temp.getVY() + 1);
 
-		}
+		}*/
 	}
 
 	/*
@@ -173,6 +178,6 @@ void particleTests () {
 	else { std::cout << "All Tests Passed" << std::endl; }
 	
 	Particle d(1.0, 1.0, 1.0, 1.0, -1, 's');
-	d.physics(d);
+	d.physics();
 	
 }

@@ -34,7 +34,7 @@ int main() {
 			cout << "Particle added to main system" << endl;
 		} else if (runType == 2) {
 			mainSys.drawParticles(mainGraphics);
-			cout << "Particle system drawn to screen" << endl;
+			cout << endl << "Particle system drawn to screen" << endl;
 		} else if (runType == 3) {
 			cout << "Working on it :3" << endl;
 		} else if (runType == 4) {
