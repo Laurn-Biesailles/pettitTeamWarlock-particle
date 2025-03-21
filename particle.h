@@ -3,12 +3,12 @@
 #include "/public/colors.h"
 #include <cstdlib>
 #include <ctime>
-#include <string>
+//#include "particleSys.h"
 
 //using namespace std;
 
 
-enum class particleType { STREAMER, BALLISTIC, FIREWORK };
+//enum class particleType { STREAMER, BALLISTIC, FIREWORK };
 
 void die (std::string s = "") {
 	if (s == "") {std::cout << "BAD INPUT" << std::endl;}
@@ -90,57 +90,57 @@ class Particle {
 
 	// TODO: physics method (calculate velocity and direction) and draw method
 	void physics(Particle& temp) {
-		srand(time(0));
-		auto [rows, cols] = get_terminal_size();
-		rows--;
-		cols--;
+		// always do this, any type
+		temp.setX(temp.getX() + temp.getVX());
+		temp.setY(temp.getY() + temp.getVY());
+		temp.setLife(temp.getLife() - 1);
+		//std::cout << temp.getLife() << std::endl;
 
-		temp.setX(rand() % cols);
-		temp.setY(rand() % rows);
-		temp.setVX(1.0);
-		temp.setVY(1.0);
-		temp.setLife(1440);
-		
-		for (int i = 0; i < temp.getLife(); i++) {
-			// update the position
-			temp.setX(temp.getX() + temp.getVX());
-			temp.setY(temp.getY() + temp.getVY());
-			temp.setLife(temp.getLife() - 45);
-
-			std::cout << temp.getLife() << std::endl;
-
-			// if we want it to bounce uncomment this stuff
-
-			
-			if (temp.getX() < 0) {
-				// bounce off edge
-				temp.setX(temp.getX() * -1.0);
-				temp.setVX(temp.getVY() * -1.0);
-				//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
-			}
-			if (temp.getY() < 0) {
-				// bounce off edge
-				temp.setY(temp.getY() * -1.0);
-				temp.setVY(temp.getVY() * -1.0);
-				//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
-			}
-			if (temp.getX() >= cols) {
-				temp.setX(cols - (temp.getX() - cols));
-				temp.setVX(temp.getVX() * -1.0);
-				//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
-			}
-			if (temp.getY() >= rows) {
-				temp.setY(rows - (temp.getY() - rows));
-				temp.setVY(temp.getVY() * -1.0);
-				//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
-			}
-			
-
-			temp.setVX(temp.getVX() + 0);
+		if (temp.getType() == 'b') { // ballistic
 			temp.setVY(temp.getVY() + 1);
+		} else if (temp.getType() == 'f') { // firework
+			temp.setVY(temp.getVY() + 1);
+			if (temp.getLife() <= 0) {
+				for (int i = 0; i < 50; i++) {
+					Particle exploParticle;
+					exploParticle.setX(temp.getX());
+					exploParticle.setY(temp.getY());
 
+					exploParticle.setVX(rand() % 7 - 3);
+					exploParticle.setVY(rand() % 7 - 3);
+					exploParticle.setLife(2 + rand() % 9);
+
+					//add_particle(exploParticle);	
+				} 
+			}
 		}
 	}
+
+		// if we want it to bounce uncomment this stuff and move into function
+		/*	
+		if (temp.getX() < 0) {
+			// bounce off edge
+			temp.setX(temp.getX() * -1.0);
+			temp.setVX(temp.getVY() * -1.0);
+			//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
+		}
+		if (temp.getY() < 0) {
+			// bounce off edge
+			temp.setY(temp.getY() * -1.0);
+			temp.setVY(temp.getVY() * -1.0);
+			//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
+		}
+		if (temp.getX() >= cols) {
+			temp.setX(cols - (temp.getX() - cols));
+			temp.setVX(temp.getVX() * -1.0);
+			//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
+		}
+		if (temp.getY() >= rows) {
+			temp.setY(rows - (temp.getY() - rows));
+			temp.setVY(temp.getVY() * -1.0);	
+			//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
+		}
+		*/
 
 	/*
 	void draw() {
