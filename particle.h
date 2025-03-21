@@ -88,9 +88,11 @@ class Particle {
 
 	// boolean operator functions
 
-	// TODO: physics method (calculate velocity and direction) and draw method
+	// TODO: physics method (calculate velocity and direction)
 	void physics(Particle& temp) {
 		// always do this, any type
+		
+		// updates x, y and life
 		temp.setX(temp.getX() + temp.getVX());
 		temp.setY(temp.getY() + temp.getVY());
 		temp.setLife(temp.getLife() - 1);
