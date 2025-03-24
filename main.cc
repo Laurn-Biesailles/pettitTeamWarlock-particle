@@ -40,6 +40,7 @@ std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
 			//test terminal
 			mainSys.drawParticles(mainGraphics);
 		} else if (runType == 3) {
+			mainSys.drawParticles(mainGraphics);
 			mainSys.runFrame(mainGraphics);
 		} else if (runType == 4) {
 			cout << "Working on it :3" << endl;

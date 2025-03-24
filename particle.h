@@ -108,26 +108,9 @@ class Particle {
 		
 		//std::cout << temp.getLife() << std::endl;
 
-		if (type == 'b') { // ballistic
+		if (type == 'b' or type == 'f') { // ballistic and firework
 			//temp.setVY(temp.getVY() + 1);
 			vY++;
-		} else if (type == 'f') { // firework
-			//temp.setVY(temp.getVY() + 1);
-			vY++;
-			if (lifetime <= 0) {
-				for (int i = 0; i < 50; i++) {
-					Particle exploParticle;
-					
-					exploParticle.setX(x);
-					exploParticle.setY(y);
-					exploParticle.setVX(rand() % 7 - 3);
-					exploParticle.setVY(rand() % 7 - 3);
-					exploParticle.setLife(2 + rand() % 9);
-					
-
-					//add_particle(exploParticle);	
-				} 
-			}
 		}
 	}
 
