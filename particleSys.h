@@ -49,7 +49,7 @@ class particleSystem{
 		node *temp = head;
 		while(temp){
 			Particle temp2 = temp->getPart();
-			temp2.physics(temp2);
+			temp2.physics();
 			temp->setPart(temp2);
 			temp = temp->getNext();
 		}

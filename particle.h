@@ -92,27 +92,38 @@ class Particle {
 
 	// move firework to particleSys and the color effects for fireworks to particleGraphics
 	// to make the 50 small particles make 50 unique lists and delete them after
-	void physics(Particle& temp) {
+	void physics() {
 		// always do this, any type
-		
+			
 		// updates x, y and life
+		/*
 		temp.setX(temp.getX() + temp.getVX());
 		temp.setY(temp.getY() + temp.getVY());
 		temp.setLife(temp.getLife() - 1);
+		*/
+
+		x += vX;
+		y += vY;
+		lifetime--;
+		
 		//std::cout << temp.getLife() << std::endl;
 
-		if (temp.getType() == 'b') { // ballistic
-			temp.setVY(temp.getVY() + 1);
-		} else if (temp.getType() == 'f') { // firework
-			temp.setVY(temp.getVY() + 1);
-			if (temp.getLife() <= 0) {
+		if (type == 'b') { // ballistic
+			//temp.setVY(temp.getVY() + 1);
+			vY++;
+		} else if (type == 'f') { // firework
+			//temp.setVY(temp.getVY() + 1);
+			vY++;
+			if (lifetime <= 0) {
 				for (int i = 0; i < 50; i++) {
 					Particle exploParticle;
-					exploParticle.setX(temp.getX());
-					exploParticle.setY(temp.getY());
+					
+					exploParticle.setX(x);
+					exploParticle.setY(y);
 					exploParticle.setVX(rand() % 7 - 3);
 					exploParticle.setVY(rand() % 7 - 3);
 					exploParticle.setLife(2 + rand() % 9);
+					
 
 					//add_particle(exploParticle);	
 				} 
@@ -177,6 +188,6 @@ void particleTests () {
 	else { std::cout << "All Tests Passed" << std::endl; }
 	
 	Particle d(1.0, 1.0, 1.0, 1.0, -1, 's');
-	d.physics(d);
+	d.physics();
 	
 }

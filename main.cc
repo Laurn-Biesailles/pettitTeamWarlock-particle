@@ -74,7 +74,6 @@ std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
 			}
 			std::cout << "\033[?25h";
 			
-			
 		} else if (runType == 7) {
 			cout << "Working on it :3" << endl;
 		} else if (runType == 8) {
