@@ -18,19 +18,19 @@ class ParticleGraphics {
 
 		} // sets particle color 
 
-        int get_r() const {
+        uint8_t get_r() const {
             return r;
         }
         void set_r(uint8_t new_r) {
             r = new_r;
         }
-		int get_g() const {
+		uint8_t get_g() const {
 			return g;
 		}
 		void set_g(uint8_t new_g) {
 			g = new_g;
 		}
-		int get_b() const {
+		uint8_t get_b() const {
 			return b;
 		}
 		void set_b(uint8_t new_b) {
