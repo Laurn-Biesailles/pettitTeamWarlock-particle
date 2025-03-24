@@ -3,7 +3,7 @@
 #include "/public/colors.h"
 #include <cstdlib>
 #include <ctime>
-//#include "particleSys.h"
+// #include "particleSys.h"
 
 //using namespace std;
 
@@ -88,9 +88,14 @@ class Particle {
 
 	// boolean operator functions
 
-	// TODO: physics method (calculate velocity and direction) and draw method
+	// TODO: physics method (calculate velocity and direction)
+
+	// move firework to particleSys and the color effects for fireworks to particleGraphics
+	// to make the 50 small particles make 50 unique lists and delete them after
 	void physics(Particle& temp) {
 		// always do this, any type
+		
+		// updates x, y and life
 		temp.setX(temp.getX() + temp.getVX());
 		temp.setY(temp.getY() + temp.getVY());
 		temp.setLife(temp.getLife() - 1);

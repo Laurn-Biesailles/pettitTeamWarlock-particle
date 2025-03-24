@@ -15,9 +15,13 @@ int main() {
 	particleSystem cSys;
 	particleSystem dSys;
 
-	ParticleGraphics mainGraphics;
+	ParticleGraphics mainGraphics(20,55,167);
 
 	cout.flush();
+	//gets row and cols for terminal size
+	auto [rows, cols] = get_terminal_size();
+std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
+
 	while(true) {
 		int runType = read("Choose which program to run:\n0- Run Tests\n1- Add Particle\n2- Draw Particle\n3- Run Physics\n4- Run ParticleSystem 1\n5- Run ParticleSystem 2\n6- Run ParticleSystem 3\n7- Run ParticleSystem 4\n8- Quit\n");
 		if (runType == 0) {
@@ -33,16 +37,44 @@ int main() {
 			mainSys.add_particle(newParticle);
 			cout << "Particle added to main system" << endl;
 		} else if (runType == 2) {
+			//test terminal
 			mainSys.drawParticles(mainGraphics);
-			cout << endl << "Particle system drawn to screen" << endl;
 		} else if (runType == 3) {
-			cout << "Working on it :3" << endl;
+			mainSys.runFrame(mainGraphics);
 		} else if (runType == 4) {
 			cout << "Working on it :3" << endl;
 		} else if (runType == 5) {
 			cout << "Working on it :3" << endl;
 		} else if (runType == 6) {
-			cout << "Working on it :3" << endl;
+			//this is Daniels testing for his program dont touch unless its breaking things
+			cout << "Now running program C" << endl;
+			double newX = 20;
+            double newY = 20;
+            double newVX = 1;
+            double newVY = -1;
+            int newLife = 1000;
+            char newType = 'C';
+			int sizeC = 0;
+			
+			while(sizeC <= 100){
+			//creates particle
+            Particle newParticle(newX,newY,newVX,newVY,newLife,newType);
+			//adds particle to cSys
+            cSys.add_particle(newParticle);
+			//draws particles in cSys
+			cSys.runFrameC(mainGraphics);
+			cSys.cull();
+			
+			//if(newX < rows){newX++;}
+
+			if(newY < cols){newY++;}
+			
+			sizeC++;
+			 
+			}
+			std::cout << "\033[?25h";
+			
+			
 		} else if (runType == 7) {
 			cout << "Working on it :3" << endl;
 		} else if (runType == 8) {

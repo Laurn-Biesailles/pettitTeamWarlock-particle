@@ -9,7 +9,7 @@ class node {
 	// particle variable
 	Particle p;
 	// linking variables
-	node *next,*prev = nullptr;
+	node *next = nullptr,*prev = nullptr;
 
 	public:
 	// constructor
