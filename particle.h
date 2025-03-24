@@ -177,6 +177,6 @@ void particleTests () {
 	else { std::cout << "All Tests Passed" << std::endl; }
 	
 	Particle d(1.0, 1.0, 1.0, 1.0, -1, 's');
-	d.physics();
+	d.physics(d);
 	
 }

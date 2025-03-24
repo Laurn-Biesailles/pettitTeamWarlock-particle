@@ -14,17 +14,8 @@ class particleSystem{
 	node *tail;
 	int size = 0;
 	public:
-<<<<<<< HEAD
-	
-	particleSystem(){
-		const auto [rows,col] = get_terminal_size();
-		row = rows;
-		colm = col;
-	}
-=======
 
 	particleSystem(){}
->>>>>>> 599c00afcc74b38281eafc7f1bc01b8d6bdc5ded
 
 	~particleSystem(){
 		node *temp = head;
@@ -56,21 +47,12 @@ class particleSystem{
 	}
 	void moveParticles(){
 		node *temp = head;
-<<<<<<< HEAD
-         while(temp){
-		Particle temp2 = temp->getPart();
-		temp2.physics();
-		temp->setPart(temp2);
-            temp = temp->getNext();
-         }
-=======
 		while(temp){
 			Particle temp2 = temp->getPart();
 			temp2.physics(temp2);
 			temp->setPart(temp2);
 			temp = temp->getNext();
 		}
->>>>>>> 599c00afcc74b38281eafc7f1bc01b8d6bdc5ded
 
 	}
 	void cull(){
