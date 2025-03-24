@@ -20,7 +20,7 @@ Hihi I'm Justus, I think we can make some cool stuff! My idea is essentially a b
 
 ### Ella Siadto
 
-Hello, I’m Ella and I’m excited to work on this project and get to know everyone in the group. My initial thought process when this project was introduced was BOOM big explosion and Mario’s fire flower powers, thus I really wanted to work on something pyro-related. I’m new to Github but I’ll definitely get a hang of it and I hope to be helpful to all of you. 
+Hello, I’m Ella and I’m excited to work on this project and get to know everyone in the group. My initial thought process when this project was introduced was BOOM big explosion and Mario’s fire flower powers, thus I really wanted to work on something pyro-related. At the moment my idea is to make something that throws balls of fire that when piled together can create a big explosion, kind of like a growing time bomb. I’m new to Github but I’ll definitely get a hang of it and I hope to be helpful to all of you. 
 
 - Part D (ParticleGraphics class)
 
