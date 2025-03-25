@@ -3,6 +3,7 @@
 #include "ParticleGraphics.h"
 #include "particleSys.h"
 #include <iostream>
+#include <cstdlib>
 #include "/public/read.h"
 using namespace std;
 
@@ -20,7 +21,7 @@ int main() {
 	cout.flush();
 	//gets row and cols for terminal size
 	auto [rows, cols] = get_terminal_size();
-std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
+	std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
 
 	while(true) {
 		// ask user for input, decides which portion to run
@@ -65,33 +66,37 @@ std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
 			cout << "Working on it :3" << endl;
 		} else if (runType == 6) {
 			//this is Daniels testing for his program dont touch unless its breaking things
-			cout << "Now running program C" << endl;
-			double newX = 20;
-            double newY = 20;
-            double newVX = 1;
-            double newVY = -1;
-            int newLife = 1000;
-            char newType = 'C';
 			int sizeC = 0;
-			
-			while(sizeC <= 100){
-			//creates particle
-            Particle newParticle(newX,newY,newVX,newVY,newLife,newType);
-			//adds particle to cSys
-            cSys.add_particle(newParticle);
-			//draws particles in cSys
-			cSys.runFrameC(mainGraphics);
-			cSys.cull();
-			
-			//if(newX < rows){newX++;}
+			char newType = 'C';
+			ParticleGraphics graphicsC(20,55,167);
+			// You can adjust these depending on your terminal or system
+			int minY = rows;
+			int maxY = rows;
+			int minX = cols - rows;
+			int maxX = cols;
 
-			if(newY < cols){newY++;}
-			
-			sizeC++;
-			 
+			while (sizeC <= 1000) {
+				// Randomize starting position and slight horizontal drift
+				double newX = minX + rand() % (maxX - minX);
+				double newY = minY; // spawn at the bottom of the lamp
+				double newVX = ((rand() % 3) - 1) * 0.01; // -0.1, 0, 0.1
+				double newVY = -0.2 + (rand() % 10) / 50.0; // upward speed between 0.2 and 0.4
+				int newLife = 150 + rand() % 100;// life span
+				while(newLife > 170){
+					newLife = 150 + rand() % 100;
+				}
+
+				// Create and add a new "lava bubble"
+				Particle newParticle(newX, newY, newVX, newVY, newLife, newType);
+				cSys.add_particle(newParticle);
+
+				// Draw particles (yours likely applies movement via vx/vy here)
+				cSys.runFrameC(graphicsC);
+
+				sizeC++;
 			}
 			std::cout << "\033[?25h";
-			
+
 		} else if (runType == 7) {
 			// Ella's final product
 			cout << "Working on it :3" << endl;

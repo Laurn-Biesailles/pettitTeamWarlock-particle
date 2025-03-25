@@ -30,8 +30,6 @@ class particleSystem{
 		return head;
 	}
 
-	//get size for row and colm
-	// auto [rows,cols] = get_terminal_size();
 
 
 	void add_particle(Particle particle){
@@ -112,15 +110,37 @@ class particleSystem{
 			}
 		}
 	}
-//normal draw
+	//normal draw
 	void drawParticles(ParticleGraphics g) {
 		node *temp = head;
 		while(temp){
 			g.drawPoint(temp->getPart().getX(),temp->getPart().getY());
-			//cout << "Drawing at (" << temp->getPart().getX() << ", " << temp->getPart().getY() << ")\n";//
+			//	cout << "Drawing at (" << temp->getPart().getX() << ", " << temp->getPart().getY() << ")\n";//
 			temp = temp->getNext();
 		}
 	}
+
+
+	//Daniels version of drawParticles
+	void drawParticlesC(ParticleGraphics g) {
+		node *temp = head;
+		while(temp){
+			
+			auto red = rand() % 256;
+			auto green = rand() % 256;
+    		auto blue = rand() % 256;
+			g.set_r(red);	
+			g.set_g(green);
+			g.set_b(blue);
+		//	g.drawPoint(temp->getPart().getX(),temp->getPart().getY());
+			g.drawCustom(temp->getPart().getX(),temp->getPart().getY(), "O");
+			movecursor(temp->getPart().getX(),temp->getPart().getY());
+			temp = temp->getNext();
+		}
+	}
+//  End of daniels draw paricles
+
+
 	void updateBounds() {
 		auto [r, c] = get_terminal_size();
 		row = r;
@@ -130,26 +150,26 @@ class particleSystem{
 
 	void runFrame(ParticleGraphics& g) {
 		while(size >= 1){
-		clearscreen();
-	    updateBounds();        // Make sure rows and cols are fresh
-		moveParticles();       // Step 1: Apply physics
-		cull();                // Step 2: Remove dead/out-of-bounds
-		drawParticles(g);      // Step 3: Draw remaining
-		usleep(100090);
+			clearscreen();
+			updateBounds();        // Make sure rows and cols are fresh
+			moveParticles();       // Step 1: Apply physics
+			cull();                // Step 2: Remove dead/out-of-bounds
+			drawParticles(g);      // Step 3: Draw remaining
+			usleep(100090);
 		}
 	}
 
-//This function is for program C
+	//This function is for program C
 	void runFrameC(ParticleGraphics& g) {
 		std::cout << "\033[?25l"; // 👈 Hide cursor        
-        clearscreen();
-        updateBounds();        // Make sure rows and cols are fresh
-        moveParticles();       // Step 1: Apply physics
-        cull();                // Step 2: Remove dead/out-of-bounds
-        drawParticles(g);      // Step 3: Draw remaining
-        usleep(100090);
-        
-    }
+		clearscreen();
+		updateBounds();        // Make sure rows and cols are fresh
+		moveParticles();       // Step 1: Apply physics
+		cull();                // Step 2: Remove dead/out-of-bounds
+		drawParticlesC(g);      // Step 3: Draw remaining
+		usleep(50000);
+
+	}
 
 
 
@@ -179,10 +199,10 @@ void partSysTest(){
 	}
 
 	/*
-	particleSystem testFire;
-	Particle fw(10, 100, 10, 40, 50, f);
-	testFire.add_particle(fw);
-	*/
+	   particleSystem testFire;
+	   Particle fw(10, 100, 10, 40, 50, f);
+	   testFire.add_particle(fw);
+	   */
 }
 
 
