@@ -132,9 +132,9 @@ class particleSystem{
 			g.set_r(red);	
 			g.set_g(green);
 			g.set_b(blue);
-		//	g.drawPoint(temp->getPart().getX(),temp->getPart().getY());
-			g.drawCustom(temp->getPart().getX(),temp->getPart().getY(), "O");
-			movecursor(temp->getPart().getX(),temp->getPart().getY());
+			g.drawPoint(temp->getPart().getX(),temp->getPart().getY());
+		//	g.drawCustom(temp->getPart().getX(),temp->getPart().getY(), "O");
+		//	movecursor(temp->getPart().getX(),temp->getPart().getY());
 			temp = temp->getNext();
 		}
 	}
