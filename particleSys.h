@@ -10,8 +10,8 @@
 class particleSystem{
 	int row = 0 ;
 	int colm = 0;
-	node *head;
-	node *tail;
+	node *head = nullptr;
+	node *tail = nullptr;
 	int size = 0;
 	public:
 
@@ -26,14 +26,19 @@ class particleSystem{
 		}
 	}
 
+	node* getHead() const {
+		return head;
+	}
+
 	//get size for row and colm
 	// auto [rows,cols] = get_terminal_size();
 
 
 	void add_particle(Particle particle){
-		node *temp = new node(particle);
+		node *temp = new node(particle, nullptr, nullptr);
 		if (!size) {
-			tail = head = temp;
+			tail = temp;
+			head = temp;
 		} else {
 			temp->setPrev(tail);
 			tail->setNext(temp);
@@ -49,7 +54,7 @@ class particleSystem{
 		node *temp = head;
 		while(temp){
 			Particle temp2 = temp->getPart();
-			temp2.physics(temp2);
+			temp2.physics();
 			temp->setPart(temp2);
 			temp = temp->getNext();
 		}
@@ -61,6 +66,15 @@ class particleSystem{
 			if(temp->getPart().getX() > row || temp->getPart().getY() > colm ||
 					temp->getPart().getX() < 0 || temp->getPart().getY() < 0 ||
 					temp->getPart().getLife() <= 0 ){
+
+				if (temp->getPart().getType() == 'f') {
+					for (int i = 0; i < 50; i++) {
+						//particleSystem exploList;
+						Particle exploPart(temp->getPart().getX(), temp->getPart().getY(), rand() % 7 - 3, rand() % 7 - 3, 2 + rand() % 9);
+						add_particle(exploPart);
+					}
+				}
+
 				if(size == 1){
 					head = tail = nullptr;
 					delete temp;
@@ -103,7 +117,7 @@ class particleSystem{
 		node *temp = head;
 		while(temp){
 			g.drawPoint(temp->getPart().getX(),temp->getPart().getY());
-			cout << "Drawing at (" << temp->getPart().getX() << ", " << temp->getPart().getY() << ")\n";//
+			//cout << "Drawing at (" << temp->getPart().getX() << ", " << temp->getPart().getY() << ")\n";//
 			temp = temp->getNext();
 		}
 	}
@@ -163,6 +177,12 @@ void partSysTest(){
 	else{
 		cout << "Added Particle" << endl;
 	}
+
+	/*
+	particleSystem testFire;
+	Particle fw(10, 100, 10, 40, 50, f);
+	testFire.add_particle(fw);
+	*/
 }
 
 

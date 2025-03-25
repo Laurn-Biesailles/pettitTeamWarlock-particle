@@ -23,10 +23,13 @@ int main() {
 std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
 
 	while(true) {
+		// ask user for input, decides which portion to run
 		int runType = read("Choose which program to run:\n0- Run Tests\n1- Add Particle\n2- Draw Particle\n3- Run Physics\n4- Run ParticleSystem 1\n5- Run ParticleSystem 2\n6- Run ParticleSystem 3\n7- Run ParticleSystem 4\n8- Quit\n");
 		if (runType == 0) {
+			// run basic tests for each header file
 			runTests();
 		} else if (runType == 1) {
+			// create new particle in main system
 			double newX = read("Enter X position:\n");
 			double newY = read("Enter Y position:\n");
 			double newVX = read("Enter X velocity:\n");
@@ -37,13 +40,28 @@ std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
 			mainSys.add_particle(newParticle);
 			cout << "Particle added to main system" << endl;
 		} else if (runType == 2) {
-			//test terminal
+			// output freeze frame of every particle in main system
+			clearscreen();
+			mainSys.updateBounds();
 			mainSys.drawParticles(mainGraphics);
+			cout << endl;
 		} else if (runType == 3) {
-			mainSys.runFrame(mainGraphics);
+			// run physics once per particle
+			int i = 0;
+			for (node *temp = mainSys.getHead(); temp; temp->getNext()) {
+				i++;
+				cout << "Previous Values of Particle " << i << endl;
+				cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << endl;
+				temp->getPart().physics();
+				cout << "Updated Values of Particle " << i << endl;
+				cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << endl << endl;
+			}
+			cout << "Particle physics updated!" << endl;
 		} else if (runType == 4) {
+			// Justus' final product
 			cout << "Working on it :3" << endl;
 		} else if (runType == 5) {
+			// Noah's final product
 			cout << "Working on it :3" << endl;
 		} else if (runType == 6) {
 			//this is Daniels testing for his program dont touch unless its breaking things
@@ -74,18 +92,21 @@ std::cout << "Terminal size: " << rows << " x " << cols << std::endl;
 			}
 			std::cout << "\033[?25h";
 			
-			
 		} else if (runType == 7) {
+			// Ella's final product
 			cout << "Working on it :3" << endl;
 		} else if (runType == 8) {
+			// stop program when user decides
 			return 0;
 		} else {
+			// spit back on bad input, just in case
 			cout << "BAD INPUT" << endl;
 		}
 	}
 }
 
 void runTests () {
+	// call tests for each class from each header
 	cout << "Testing Particle Class:" << endl;
 	particleTests();
 
