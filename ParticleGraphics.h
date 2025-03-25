@@ -77,28 +77,36 @@ class ParticleGraphics {
 						movecursor(col,row);
 						cout << " ";
 					}
-					//else { movecursor(col,row); }
 				}
 			}
 			cout.flush();
 			resetcolor();
-		} // draws circle - good enough?
+		} // draws circle with particles
 
-        void drawPolygon(int min_x, int max_x, int min_y, int max_y) { 
-			assert(min_x < max_x);
-			assert(min_y < max_y);
+		void drawOs(int x, int y) {
 			resetcolor();
-			setbgcolor(r,g,b);
-			for (int col = min_x; col <= max_x; col++) {
-				for (int row = min_y; row <= max_y; row++) {
-					movecursor(col,row);
-					cout << " ";
-				}
-			}
+			setcolor(r,g,b);
+			movecursor(x,y);
+			cout << "⬤ " << endl;
 			cout.flush();
 			resetcolor();
-			return; 
-		} // draws polygon - not done!
+		} // draws unicode circle
+
+		void drawSparks(int x, int y) {
+			resetcolor();
+			setcolor(r,g,b);
+			cout << "⊹₊⁺" << endl; // feel free to change the string 
+			cout.flush();
+			resetcolor();
+		} // draws unicode sparks
+
+		void drawCustom(int x, int y, string Custom) {
+			resetcolor();
+			setcolor(r,g,b);
+			cout << Custom << endl;
+			cout.flush();
+			resetcolor();
+		} // draws whatever custom string input
 
         void drawLine(int x, int y) { 
 			resetcolor();
@@ -141,4 +149,7 @@ void ParticleGraphics_test() {
 	//cout << "Checking draw functions" << endl; 
 	//b.drawRectangle(0,10,0,10);
 	//c.drawCircle(0,0,10);
+	//c.drawOs(0,0);
+	//c.drawSparks(0,0);
+	//c.drawCustom(0,0, "₍^. .^₎⟆");
 }
