@@ -86,9 +86,8 @@ class Particle {
 		else newType = 's';
 	}
 
-	// boolean operator functions
 
-	// TODO: physics method (calculate velocity and direction)
+	// physics method (calculate velocity and direction)
 
 	// move firework to particleSys and the color effects for fireworks to particleGraphics
 	// to make the 50 small particles make 50 unique lists and delete them after
@@ -96,56 +95,16 @@ class Particle {
 		// always do this, any type
 			
 		// updates x, y and life
-		/*
-		temp.setX(temp.getX() + temp.getVX());
-		temp.setY(temp.getY() + temp.getVY());
-		temp.setLife(temp.getLife() - 1);
-		*/
-
 		x += vX;
 		y += vY;
 		lifetime--;
-		
-		//std::cout << temp.getLife() << std::endl;
 
 		if (type == 'b' or type == 'f') { // ballistic and firework
-			//temp.setVY(temp.getVY() + 1);
 			vY++;
 		}
 	}
 
-		// if we want it to bounce uncomment this stuff and move into function
-		/*	
-		if (temp.getX() < 0) {
-			// bounce off edge
-			temp.setX(temp.getX() * -1.0);
-			temp.setVX(temp.getVY() * -1.0);
-			//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
-		}
-		if (temp.getY() < 0) {
-			// bounce off edge
-			temp.setY(temp.getY() * -1.0);
-			temp.setVY(temp.getVY() * -1.0);
-			//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
-		}
-		if (temp.getX() >= cols) {
-			temp.setX(cols - (temp.getX() - cols));
-			temp.setVX(temp.getVX() * -1.0);
-			//std::cout << "x: " << temp.getX() << " vX: " << temp.getVX() << std::endl;
-		}
-		if (temp.getY() >= rows) {
-			temp.setY(rows - (temp.getY() - rows));
-			temp.setVY(temp.getVY() * -1.0);	
-			//std::cout << "y: " << temp.getY() << " vY: " << temp.getVY() << std::endl;
-		}
-		*/
-
-	/*
-	void draw() {
-		return;	
-	}
-	*/
-
+	// boolean operator function
 	bool operator!=(const Particle& temp) const {return ( (x != temp.getX()) or (y != temp.getY()) or (vX != temp.getVX()) or (vY != temp.getVY()) or (lifetime != temp.getLife()) or (type != temp.getType()) );}
 
 

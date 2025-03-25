@@ -10,8 +10,8 @@
 class particleSystem{
 	int row = 0 ;
 	int colm = 0;
-	node *head;
-	node *tail;
+	node *head = nullptr;
+	node *tail = nullptr;
 	int size = 0;
 	public:
 
@@ -26,14 +26,19 @@ class particleSystem{
 		}
 	}
 
+	node* getHead() const {
+		return head;
+	}
+
 	//get size for row and colm
 	// auto [rows,cols] = get_terminal_size();
 
 
 	void add_particle(Particle particle){
-		node *temp = new node(particle);
+		node *temp = new node(particle, nullptr, nullptr);
 		if (!size) {
-			tail = head = temp;
+			tail = temp;
+			head = temp;
 		} else {
 			temp->setPrev(tail);
 			tail->setNext(temp);
