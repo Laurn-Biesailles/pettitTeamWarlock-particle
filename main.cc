@@ -49,7 +49,6 @@ int main() {
 		} else if (runType == 3) {
 			// run physics once per particle
 			int i = 0;
-			
 			for (node *temp = mainSys.getHead(); temp != nullptr; temp = temp->getNext()) {
 				i++;
 				Particle np = temp->getPart();
@@ -64,6 +63,7 @@ int main() {
 				// print out values after calling physics function
 				cout << "Updated Values of Particle " << i << endl;
 				cout << "X: " << np.getX() << ", Y: " << np.getY() << ", vX: " << np.getVX() << ", vY: " << np.getVY() << ", lifetime: " << np.getLife() << endl << endl;
+					
 			}
 			cout << "Particle physics updated!" << endl;
 		} else if (runType == 4) {
@@ -108,8 +108,8 @@ int main() {
 			
 			int minY = rows;
 			int maxY = rows;
-			int minX = 40;
-			int maxX = cols ;
+			int minX = 1;
+			int maxX = cols;
 
 			while (sizeC <= 1000) {
 				
