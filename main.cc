@@ -49,13 +49,22 @@ int main() {
 		} else if (runType == 3) {
 			// run physics once per particle
 			int i = 0;
-			for (node *temp = mainSys.getHead(); temp; temp->getNext()) {
-				i++;
-				cout << "Previous Values of Particle " << i << endl;
-				cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << endl;
-				temp->getPart().physics();
-				cout << "Updated Values of Particle " << i << endl;
-				cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << endl << endl;
+			for (node *temp = mainSys.getHead(); temp; ) {
+				while (temp->getPart().getLife() >= 0) {
+					i++;
+					// print out values before calling physics function
+					
+					cout << "Previous Values of Particle " << i << endl;
+					cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << ", lifetime: " << temp->getPart().getLife() << endl;
+					
+					temp->getPart().physics();
+					//temp->getPart().setLife(temp->getPart().getLife());
+
+					// print out values after calling physics function
+					cout << "Updated Values of Particle " << i << endl;
+					cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << ", lifetime: " << temp->getPart().getLife() << endl << endl;
+
+				}
 			}
 			cout << "Particle physics updated!" << endl;
 		} else if (runType == 4) {
