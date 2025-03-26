@@ -72,8 +72,8 @@ int main() {
 			// You can adjust these depending on your terminal or system
 			int minY = rows;
 			int maxY = rows;
-			int minX = cols - rows;
-			int maxX = cols;
+			int minX = 40;
+			int maxX = cols ;
 
 			while (sizeC <= 1000) {
 				// Randomize starting position and slight horizontal drift
