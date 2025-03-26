@@ -49,6 +49,7 @@ int main() {
 		} else if (runType == 3) {
 			// run physics once per particle
 			int i = 0;
+<<<<<<< HEAD
 			for (node *temp = mainSys.getHead(); temp; temp->getNext()) {
 				i++;
 				cout << "Previous Values of Particle " << i << endl;
@@ -57,6 +58,26 @@ int main() {
 				cout << "Updated Values of Particle " << i << endl;
 				cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << endl << endl;
 				mainSys.moveParticles();
+=======
+			
+			for (node *temp = mainSys.getHead(); temp != nullptr; temp = temp->getNext()) {
+				while (temp->getPart().getLife() > 0) {
+					i++;
+					Particle np = temp->getPart();
+					// print out values before calling physics function
+					cout << "Previous Values of Particle " << i << endl;
+					cout << "X: " << np.getX() << ", Y: " << np.getY() << ", vX: " << np.getVX() << ", vY: " << np.getVY() << ", lifetime: " << np.getLife() << endl;
+					
+					np.physics();
+					temp->setPart(np);
+					//temp->getPart().setLife(temp->getPart().getLife());
+
+					// print out values after calling physics function
+					cout << "Updated Values of Particle " << i << endl;
+					cout << "X: " << np.getX() << ", Y: " << np.getY() << ", vX: " << np.getVX() << ", vY: " << np.getVY() << ", lifetime: " << np.getLife() << endl << endl;
+					
+				}
+>>>>>>> 9a2bac9c3526707520da54c69596a2c30fbce518
 			}
 			cout << "Particle physics updated!" << endl;
 		} else if (runType == 4) {

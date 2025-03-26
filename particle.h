@@ -97,11 +97,13 @@ class Particle {
 		// updates x, y and life
 		x += vX;
 		y += vY;
-		lifetime--;
+	    lifetime--;
 
 		if (type == 'b' or type == 'f') { // ballistic and firework
 			vY++;
 		}
+
+	
 	}
 
 	// boolean operator function
