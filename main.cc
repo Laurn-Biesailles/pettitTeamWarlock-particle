@@ -56,6 +56,7 @@ int main() {
 				temp->getPart().physics();
 				cout << "Updated Values of Particle " << i << endl;
 				cout << "X: " << temp->getPart().getX() << ", Y: " << temp->getPart().getY() << ", vX: " << temp->getPart().getVX() << ", vY: " << temp->getPart().getVY() << endl << endl;
+				mainSys.moveParticles();
 			}
 			cout << "Particle physics updated!" << endl;
 		} else if (runType == 4) {
@@ -72,8 +73,8 @@ int main() {
 			
 			int minY = rows;
 			int maxY = rows;
-			int minX = 40;
-			int maxX = cols ;
+			int minX = 1;
+			int maxX = cols;
 
 			while (sizeC <= 1000) {
 				
