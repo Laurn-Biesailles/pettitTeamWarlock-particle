@@ -69,19 +69,19 @@ int main() {
 			int sizeC = 0;
 			char newType = 'C';
 			ParticleGraphics graphicsC(20,55,167);
-			// You can adjust these depending on your terminal or system
+			
 			int minY = rows;
 			int maxY = rows;
 			int minX = 40;
 			int maxX = cols ;
 
 			while (sizeC <= 1000) {
-				// Randomize starting position and slight horizontal drift
+				
 				double newX = minX + rand() % (maxX - minX);
-				double newY = minY; // spawn at the bottom of the lamp
-				double newVX = ((rand() % 3) - 1) * 0.01; // -0.1, 0, 0.1
+				double newY = minY; 
+				double newVX = ((rand() % 3) - 1) * 0.01; 
 				double newVY = -0.2 + (rand() % 10) / 50.0; // upward speed between 0.2 and 0.4
-				int newLife = 150 + rand() % 100;// life span
+				int newLife = 150 + rand() % 100;
 				while(newLife > 170){
 					newLife = 150 + rand() % 100;
 				}
@@ -90,7 +90,7 @@ int main() {
 				Particle newParticle(newX, newY, newVX, newVY, newLife, newType);
 				cSys.add_particle(newParticle);
 
-				// Draw particles (yours likely applies movement via vx/vy here)
+				// Draw particles
 				cSys.runFrameC(graphicsC);
 
 				sizeC++;
