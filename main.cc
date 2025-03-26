@@ -51,22 +51,19 @@ int main() {
 			int i = 0;
 			
 			for (node *temp = mainSys.getHead(); temp != nullptr; temp = temp->getNext()) {
-				while (temp->getPart().getLife() > 0) {
-					i++;
-					Particle np = temp->getPart();
-					// print out values before calling physics function
-					cout << "Previous Values of Particle " << i << endl;
-					cout << "X: " << np.getX() << ", Y: " << np.getY() << ", vX: " << np.getVX() << ", vY: " << np.getVY() << ", lifetime: " << np.getLife() << endl;
+				i++;
+				Particle np = temp->getPart();
+				// print out values before calling physics function
+				cout << "Previous Values of Particle " << i << endl;
+				cout << "X: " << np.getX() << ", Y: " << np.getY() << ", vX: " << np.getVX() << ", vY: " << np.getVY() << ", lifetime: " << np.getLife() << endl;
 					
-					np.physics();
-					temp->setPart(np);
-					//temp->getPart().setLife(temp->getPart().getLife());
+				np.physics();
+				temp->setPart(np);
+				//temp->getPart().setLife(temp->getPart().getLife());
 
-					// print out values after calling physics function
-					cout << "Updated Values of Particle " << i << endl;
-					cout << "X: " << np.getX() << ", Y: " << np.getY() << ", vX: " << np.getVX() << ", vY: " << np.getVY() << ", lifetime: " << np.getLife() << endl << endl;
-					
-				}
+				// print out values after calling physics function
+				cout << "Updated Values of Particle " << i << endl;
+				cout << "X: " << np.getX() << ", Y: " << np.getY() << ", vX: " << np.getVX() << ", vY: " << np.getVY() << ", lifetime: " << np.getLife() << endl << endl;
 			}
 			cout << "Particle physics updated!" << endl;
 		} else if (runType == 4) {
@@ -74,7 +71,35 @@ int main() {
 			cout << "Working on it :3" << endl;
 		} else if (runType == 5) {
 			// Noah's final product
-			cout << "Working on it :3" << endl;
+			//int size = 0;
+
+			int minX = 40;
+			int minY = rows;
+
+			int maxX = cols;
+			int maxY = rows;
+
+			ParticleGraphics graphicsNoah(14, 12, 102);
+			
+			for (int i = 0; i < 250; i++) {
+			//while (size <= 1000) {
+				double newX = minX + rand() % (maxX - minX);
+				double newY = minY;
+				double newVX = ((rand() % 3) - 1) * 0.01;
+				double newVY = 0.2 + (rand() % 10) / 50.0;
+				int newLife = 250 + rand() % 10;
+				while (newLife > 275) {
+					newLife = 250 + rand() % 10;
+				}
+
+				Particle newFire(newX, newY, newVX, newVY, newLife, 'f');
+				cSys.add_particle(newFire);
+
+				cSys.runFrameC(graphicsNoah);
+				//size++;
+			}	
+			std::cout << "\033[?25h";
+
 		} else if (runType == 6) {
 			//this is Daniels testing for his program dont touch unless its breaking things
 			int sizeC = 0;
