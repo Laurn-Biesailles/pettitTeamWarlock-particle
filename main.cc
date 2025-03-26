@@ -73,32 +73,29 @@ int main() {
 			// Noah's final product
 			//int size = 0;
 
-			int minX = 40;
-			int minY = rows;
+			int minX = 50;
+			int minY = 0;
 
-			int maxX = cols;
+			int maxX = 100;
 			int maxY = rows;
 
-			ParticleGraphics graphicsNoah(14, 12, 102);
+			ParticleGraphics graphicsNoah(200, 0, 0);
 			
 			for (int i = 0; i < 250; i++) {
 			//while (size <= 1000) {
 				double newX = minX + rand() % (maxX - minX);
 				double newY = minY;
 				double newVX = ((rand() % 3) - 1) * 0.01;
-				double newVY = 0.2 + (rand() % 10) / 50.0;
-				int newLife = 250 + rand() % 10;
-				while (newLife > 275) {
-					newLife = 250 + rand() % 10;
-				}
+				double newVY = 0.1 + (rand() % 10) / 50.0;
+				int newLife = 7 + rand() % 10;
 
 				Particle newFire(newX, newY, newVX, newVY, newLife, 'f');
 				cSys.add_particle(newFire);
 
-				cSys.runFrameC(graphicsNoah);
+				cSys.runFrame(graphicsNoah);
 				//size++;
 			}	
-			std::cout << "\033[?25h";
+			//std::cout << "\033[?25h";
 
 		} else if (runType == 6) {
 			//this is Daniels testing for his program dont touch unless its breaking things
